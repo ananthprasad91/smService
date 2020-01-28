@@ -1,0 +1,81 @@
+swagger: '2.0'
+info:
+  description: Story Management
+  version: 1.0.0
+  title: Story Management
+basePath: /
+tags:
+  - name: Story
+    description: Story Management
+schemes:
+  - http
+  - https
+paths:
+  /stories:
+    get:
+
+      summary: Get all the stories available
+      description: ''
+      operationId: getStories
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+  /createStory:
+    post:
+      summary: Create new story
+      description: ''
+      operationId: create Story
+      produces:
+        - application/json
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Story creation object"
+        required: true
+        schema:
+          $ref: "#/definitions/story"
+      responses:
+        201:
+          description: "New story created Successfully"
+        404:
+          description: "Invalid Request Data"
+  /deleteStory:
+    delete:
+      summary: Delete the story
+      description: "Delete the story"
+      operationId: Delete Story
+      produces:
+        - application/json
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Story creation object"
+        required: true
+        schema:
+          $ref: "#/definitions/delete"
+      responses:
+        201:
+          description: "Story has been deleted successfully"
+        404:
+          description: "Invalid Request Data"
+definitions:
+  story:
+    type: "object"
+    properties:
+      userId:
+        type: "string"
+      title:
+        type: "string"
+      storyBody:
+        type: "string"
+    xml:
+      name: "User"
+  delete:
+    type: "object"
+    properties:
+      userId:
+        type: "string"
+      storyId:
+        type: "string"
