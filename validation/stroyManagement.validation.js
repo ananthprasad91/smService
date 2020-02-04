@@ -1,5 +1,12 @@
 const Joi = require('joi')
 
+const myStoriesValidation = (myStoriesData) => {
+    const myStoriesSchema = {
+        userId: Joi.string()
+            .required()
+    }
+    return Joi.validate(myStoriesData, myStoriesSchema).error
+}
 const createStoryValidation = (createStoryData) => {
     const createStorySchema = {
         userId: Joi.string()

@@ -16,6 +16,20 @@ async function getStories(req, res) {
   }
 }
 
+async function getMyStories(req, res) {
+  const { userId } = req.body
+
+  try {
+    //Get My Stories
+    const stories = await storyManagementService.getMyStories(userId)
+    return res.status(200)
+      .send({ stories })
+  } catch (e) {
+    return res.status(500)
+      .send(e)
+  }
+}
+
 async function createStory(req, res) {
   const { userId, title, storyBody } = req.body
 
@@ -86,6 +100,7 @@ async function accessDenied(req, res) {
 
 module.exports = {
   getStories,
+  getMyStories,
   createStory,
   deleteStory,
   resourceNotFound,

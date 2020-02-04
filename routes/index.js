@@ -4,7 +4,8 @@ const { auth } = require('./apiAuth')
 const storyManagementController = require('../controllers/storyManagement.controller')
 
 router.post('/createStory', auth, storyManagementController.createStory)
-router.delete('/deleteStory', auth, storyManagementController.deleteStory)
+router.post('/deleteStory', auth, storyManagementController.deleteStory)
 router.get('/stories', auth, storyManagementController.getStories)
+router.post('/myStories', auth, storyManagementController.getMyStories)
 
 module.exports = router

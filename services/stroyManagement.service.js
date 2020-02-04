@@ -1,7 +1,16 @@
 const Story = require('../models/Story')
-async function getAllStories(email) {
+
+async function getAllStories() {
   try {
     return Story.find().sort( { createdDate: -1 } )
+  } catch (e) {
+    throw e
+  }
+}
+
+async function getMyStories(userId) {
+  try {
+    return Story.find({ userId: userId }).sort( { createdDate: -1 } )
   } catch (e) {
     throw e
   }
@@ -26,6 +35,7 @@ async function deleteStory(storyObj) {
 
 module.exports = {
   getAllStories,
+  getMyStories,
   createStory,
   deleteStory
 }
