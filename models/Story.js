@@ -12,6 +12,11 @@ const StorySchema = new mongoose.Schema({
     storyBody: {
         type: String,
         required: true
+    },
+    createdDate: {
+        type: Date,
+        required: true,
+        default: () => new Date(+new Date() + 7*24*60*60*1000)
     }
 })
 

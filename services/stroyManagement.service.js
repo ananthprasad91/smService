@@ -1,7 +1,7 @@
 const Story = require('../models/Story')
 async function getAllStories(email) {
   try {
-    return Story.find()
+    return Story.find().sort( { createdDate: -1 } )
   } catch (e) {
     throw e
   }
