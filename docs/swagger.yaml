@@ -1,67 +1,139 @@
-swagger: '2.0'
+swagger: "2.0"
 info:
-  description: Story Management
-  version: 1.0.0
-  title: Story Management
-basePath: /
+ 
+  version: "1.0.0"
+  title: "User Management"
+  
+host: "localhost:5000/api"
+basePath: "/sm"
 tags:
-  - name: Story
-    description: Story Management
+- name: "Story Management"
+  
 schemes:
-  - http
-  - https
+- "http"
 paths:
-  /stories:
-    get:
-
-      summary: Get all the stories available
-      description: ''
-      operationId: getStories
-      produces:
-        - application/json
-      responses:
-        '200':
-          description: successful operation
+ 
   /createStory:
     post:
-      summary: Create new story
-      description: ''
-      operationId: create Story
+      tags:
+      - "Story Management"
+      summary: "Create new Story"
+      description: "Create new Story for the current user"
+      operationId: "CreateStory"
       produces:
-        - application/json
+      - "application/json"
       parameters:
       - in: "body"
         name: "body"
-        description: "Story creation object"
+        description: "Object to create Story"
         required: true
         schema:
-          $ref: "#/definitions/story"
+          $ref: "#/definitions/CreateStory"
+      - in: "header"
+        name: "auth-token"
+        description: "AuthToken Generated From Login EndPoint"
+        required: true
+        schema:
+          $ref: "#/definitions/AuthToken"
       responses:
         201:
-          description: "New story created Successfully"
-        404:
+          description: "New Story Created Successfully"
+        400:
           description: "Invalid Request Data"
+        401:
+          description: "Unauthorized"
+  /stories:
+    get:
+      tags:
+      - "Story Management"
+      summary: "Get All Stories"
+      description: "List of stories from all users"
+      operationId: "GetAllStory"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "header"
+        name: "auth-token"
+        description: "AuthToken Generated From Login EndPoint"
+        required: true
+        schema:
+          $ref: "#/definitions/AuthToken"
+      responses:
+        200:
+          description: "Get List Of Stories"
+        400:
+          description: "Invalid Request Data"
+        401:
+          description: "Unauthorized"
+  
+  /myStories:
+    post:
+      tags:
+      - "Story Management"
+      summary: "Get Stories of current user"
+      description: "List of stories associated with currently logged in user"
+      operationId: "MyStories"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Object with userId to get list of stories"
+        required: true
+        schema:
+          $ref: "#/definitions/MyStories"
+      - in: "header"
+        name: "auth-token"
+        description: "AuthToken Generated From Login EndPoint"
+        required: true
+        schema:
+          $ref: "#/definitions/AuthToken"
+      responses:
+        200:
+          description: "List of stories"
+        400:
+          description: "Invalid Request Data"
+        401:
+          description: "Unauthorized"
+          
   /deleteStory:
-    delete:
-      summary: Delete the story
-      description: "Delete the story"
-      operationId: Delete Story
+    post:
+      tags:
+      - "Story Management"
+      summary: "Delete a Story of current user"
+      operationId: "DeleteStory"
       produces:
-        - application/json
+      - "application/json"
       parameters:
       - in: "body"
         name: "body"
-        description: "Story creation object"
+        description: "Object with userId and storyId"
         required: true
         schema:
-          $ref: "#/definitions/delete"
+          $ref: "#/definitions/DeleteStory"
+      - in: "header"
+        name: "auth-token"
+        description: "AuthToken Generated From Login EndPoint"
+        required: true
+        schema:
+          $ref: "#/definitions/AuthToken"
       responses:
-        201:
-          description: "Story has been deleted successfully"
-        404:
+        200:
+          description: "List of stories"
+        400:
           description: "Invalid Request Data"
+        401:
+          description: "Unauthorized"
+  
 definitions:
-  story:
+  AuthToken:
+      type: "object"
+      properties:
+        auht-token:
+          type: "string"
+      xml:
+        name: "Auth"
+  CreateStory:
     type: "object"
     properties:
       userId:
@@ -71,11 +143,21 @@ definitions:
       storyBody:
         type: "string"
     xml:
-      name: "User"
-  delete:
+      name: "CreateStory"
+  MyStories:
+    type: "object"
+    properties:
+      userId:
+        type: "string"
+    xml:
+      name: "MyStories"
+  DeleteStory:
     type: "object"
     properties:
       userId:
         type: "string"
       storyId:
         type: "string"
+    xml:
+      name: "MyStories"
+  
