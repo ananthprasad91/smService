@@ -27,7 +27,7 @@ async function createStory(storyObj) {
 
 async function deleteStory(storyObj) {
   try {
-    return Story.find(storyObj).remove()
+    return Story.deleteOne(storyObj)
   } catch (e) {
     throw e
   }

@@ -9,8 +9,6 @@ const myStoriesValidation = (myStoriesData) => {
 }
 const createStoryValidation = (createStoryData) => {
     const createStorySchema = {
-        userId: Joi.string()
-            .required(),
         title: Joi.string()
             .required(),
         storyBody: Joi.string()
@@ -20,8 +18,6 @@ const createStoryValidation = (createStoryData) => {
 }
 const deleteStoryValidation = (deleteStoryData) => {
     const deleteStorySchema = {
-        userId: Joi.string()
-            .required(),
         storyId: Joi.string()
             .required()
     }

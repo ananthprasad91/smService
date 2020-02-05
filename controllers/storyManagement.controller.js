@@ -2,6 +2,7 @@
 const storyManagementService = require("../services/stroyManagement.service")
 const storyValidation = require('../validation/stroyManagement.validation')
 const { ObjectId } = require('mongoose').Types
+const { getUserId } = require('../utils/decodeToken')
 
 async function getStories(req, res) {
 
@@ -17,8 +18,8 @@ async function getStories(req, res) {
 }
 
 async function getMyStories(req, res) {
-  const { userId } = req.body
-
+  const token = await req.header('auth-token')
+  const userId = await getUserId(token)
   try {
     //Get My Stories
     const stories = await storyManagementService.getMyStories(userId)
@@ -31,8 +32,9 @@ async function getMyStories(req, res) {
 }
 
 async function createStory(req, res) {
-  const { userId, title, storyBody } = req.body
-
+  const { title, storyBody } = req.body
+  const token = await req.header('auth-token')
+  const userId = await getUserId(token)
   try {
     //Validate Request Data
     const error = storyValidation.createStoryValidation(req.body)
@@ -53,10 +55,11 @@ async function createStory(req, res) {
 }
 
 async function deleteStory(req, res) {
-
-  const { userId } = req.body
+  
+  const token = await req.header('auth-token')
+  const userId = await getUserId(token)
   const _id = req.body.storyId
-
+  
   try {
     //Validate Request Data
     const error = storyValidation.deleteStoryValidation(req.body)

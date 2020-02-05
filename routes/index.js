@@ -6,6 +6,6 @@ const storyManagementController = require('../controllers/storyManagement.contro
 router.post('/createStory', auth, storyManagementController.createStory)
 router.post('/deleteStory', auth, storyManagementController.deleteStory)
 router.get('/stories', auth, storyManagementController.getStories)
-router.post('/myStories', auth, storyManagementController.getMyStories)
+router.get('/myStories', auth, storyManagementController.getMyStories)
 
 module.exports = router

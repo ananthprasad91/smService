@@ -2,7 +2,7 @@ swagger: "2.0"
 info:
  
   version: "1.0.0"
-  title: "User Management"
+  title: "Story Management"
   
 host: "localhost:5000/api"
 basePath: "/sm"
@@ -67,7 +67,7 @@ paths:
           description: "Unauthorized"
   
   /myStories:
-    post:
+    get:
       tags:
       - "Story Management"
       summary: "Get Stories of current user"
@@ -76,12 +76,6 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - in: "body"
-        name: "body"
-        description: "Object with userId to get list of stories"
-        required: true
-        schema:
-          $ref: "#/definitions/MyStories"
       - in: "header"
         name: "auth-token"
         description: "AuthToken Generated From Login EndPoint"
@@ -136,26 +130,15 @@ definitions:
   CreateStory:
     type: "object"
     properties:
-      userId:
-        type: "string"
       title:
         type: "string"
       storyBody:
         type: "string"
     xml:
       name: "CreateStory"
-  MyStories:
-    type: "object"
-    properties:
-      userId:
-        type: "string"
-    xml:
-      name: "MyStories"
   DeleteStory:
     type: "object"
     properties:
-      userId:
-        type: "string"
       storyId:
         type: "string"
     xml:
