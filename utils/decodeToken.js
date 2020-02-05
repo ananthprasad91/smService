@@ -7,6 +7,11 @@ const getUserId = (authToken) => {
     return userId
 }
 
+const signUserId = (userId) => {
+    const res = jwt.sign({ _id: userId }, SECRET, { expiresIn: '1d' })
+    return res
+}
+
 module.exports = {
   getUserId
 }

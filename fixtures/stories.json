@@ -1,0 +1,34 @@
+[
+    {
+        "_id": "5e3aff5bdfedbd14281920fe",
+        "userId": "5e395693ab21ea358847a095",
+        "title": "string",
+        "storyBody": "string",
+        "createdDate": "2020-02-12T17:46:03.869Z",
+        "__v": 0
+    },
+    {
+        "_id": "5e39ab4000e3412a80217881",
+        "userId": "5e29ffd689cb473db4fc43bf",
+        "title": "testsw",
+        "storyBody": "testsw",
+        "createdDate": "2020-02-11T17:34:56.439Z",
+        "__v": 0
+    },
+    {
+        "_id": "5e3984d0826044332e4397b5",
+        "userId": "5e39849b941309333f061b05",
+        "title": "Unit Test_04-2020",
+        "storyBody": "Test Story for new user",
+        "createdDate": "2020-02-11T14:50:56.253Z",
+        "__v": 0
+    },
+    {
+        "_id": "5e39618373af11069079db64",
+        "userId": "5e396164ab21ea358847a096",
+        "title": "test1",
+        "storyBody": "test1",
+        "createdDate": "2020-02-11T12:20:19.791Z",
+        "__v": 0
+    }
+]
